@@ -67,3 +67,5 @@ group :test do
 end
 
 gem "cssbundling-rails", "~> 1.3.3"
+
+gem 'paper_trail', '~> 15.1'
