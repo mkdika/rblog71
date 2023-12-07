@@ -10,9 +10,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_06_123114) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_07_011856) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.citext "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "name", limit: 50
+    t.string "email", limit: 100
+    t.text "content"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "permalink"
+    t.string "title", limit: 100
+    t.text "content"
+    t.boolean "release", default: false
+    t.datetime "release_date"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_posts_on_category_id"
+    t.index ["permalink"], name: "index_posts_on_permalink", unique: true
+    t.index ["release_date"], name: "index_posts_on_release_date", order: :desc
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.bigint "tag_id"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id", "tag_id"], name: "index_taggings_on_post_id_and_tag_id", unique: true
+    t.index ["post_id"], name: "index_taggings_on_post_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.citext "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
+  end
 
   create_table "versions", force: :cascade do |t|
     t.string "item_type", null: false
@@ -25,4 +74,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_06_123114) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
+  add_foreign_key "comments", "posts"
+  add_foreign_key "posts", "categories"
+  add_foreign_key "taggings", "posts"
+  add_foreign_key "taggings", "tags"
 end
