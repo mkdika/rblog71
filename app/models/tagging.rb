@@ -4,6 +4,4 @@ class Tagging < ApplicationRecord
   belongs_to :post
   accepts_nested_attributes_for :tag
 
-  validates :tag, uniqueness: { scope: :post }
-
 end

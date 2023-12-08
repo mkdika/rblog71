@@ -3,7 +3,6 @@ class Post < ApplicationRecord
   has_paper_trail
 
   belongs_to :category
-  belongs_to :user
   has_many :taggings
   has_many :tags, through: :taggings
   has_many :comments, dependent: :destroy
@@ -15,7 +14,7 @@ class Post < ApplicationRecord
   before_save :permalink
 
   def permalink
-    super || self.permalink = "#{title.strip.downcase.gsub " ", "-"}"
+    self.permalink = "#{title.strip.downcase.gsub " ", "-"}"
   end
 
 end
