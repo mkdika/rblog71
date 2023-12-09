@@ -1,0 +1,33 @@
+language: ruby
+sudo: false
+dist: jammy
+rvm:
+  - 3.2.2
+
+before_install:
+  - bundle install
+
+services:
+  - postgresql
+
+env:
+  - DATABASE_USERNAME=postgres DATABASE_PASSWORD= DATABASE_HOST=127.0.0.1 DATABASE_PORT=5432
+
+script:
+  - rails db:setup
+  - rspec
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+  - .autoconf
+
+notifications:
+  email:
+    recipients:
+      - mkdika@gmail.com
+    on_success: never
+    on_failure: always
