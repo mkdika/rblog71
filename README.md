@@ -1,7 +1,7 @@
 # rBlog71
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](/LICENSE)
-[![ruby badge](https://img.shields.io/badge/Ruby-3.2.2-red)](https://www.ruby-lang.org/en/news/2023/03/30/ruby-3-2-2-released/)
+[![ruby badge](https://img.shields.io/badge/Ruby-3.2.1-red)](https://www.ruby-lang.org/en/news/2023/02/08/ruby-3-2-1-released/)
 [![rails badge](https://img.shields.io/badge/Rails-7.1-brightgreen)](https://guides.rubyonrails.org/7_1_release_notes.html)
 [![codebeat badge](https://codebeat.co/badges/5d75a3b1-a3ab-4dd6-b9bf-f10fad7fe8a8)](https://codebeat.co/projects/github-com-mkdika-rblog71-main)
 
