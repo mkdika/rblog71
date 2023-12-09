@@ -20,10 +20,14 @@ jobs:
       DATABASE_URL: "postgres://postgres:rahasia@localhost:5432/rblog71_test"
     steps:
       - uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
+      - name: Setup Ruby 3.2.1
+        uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
         with:
           ruby-version: '3.2.1'
           bundler-cache: true
-      - run: bundle install
-      - run: bundle exec rake db:setup
-      - run: bundle exec rspec
+      - name: Install dependencies
+        run: bundle install
+      - name: Create test database
+        run: bundle exec rake db:setup
+      - name: Running test suite
+        run: bundle exec rspec
