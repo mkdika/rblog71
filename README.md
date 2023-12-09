@@ -4,6 +4,7 @@
 [![ruby badge](https://img.shields.io/badge/Ruby-3.2.1-red)](https://www.ruby-lang.org/en/news/2023/02/08/ruby-3-2-1-released/)
 [![rails badge](https://img.shields.io/badge/Rails-7.1-brightgreen)](https://guides.rubyonrails.org/7_1_release_notes.html)
 [![codebeat badge](https://codebeat.co/badges/5d75a3b1-a3ab-4dd6-b9bf-f10fad7fe8a8)](https://codebeat.co/projects/github-com-mkdika-rblog71-main)
+[![github flow](https://github.com/mkdika/rblog71/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/mkdika/rblog71/actions/workflows/rubyonrails.yml)
 
 Yet another simple Ruby on Rails (RoR) blog application.
 This is my RoR full stack web development learning project & example, including its automatic CI/CD setup and cloud platform deployment.
