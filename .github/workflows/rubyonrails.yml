@@ -1,0 +1,27 @@
+name: "Ruby on Rails CI"
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14-alpine
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: rahasia
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://postgres:rahasia@localhost:5432/rblog71_test"
+    steps:
+      - uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
+        with:
+          ruby-version: '3.2.2'
+      - run: bundle install
+      - run: bundle exec rake db:setup
+      - run: bundle exec rspec
